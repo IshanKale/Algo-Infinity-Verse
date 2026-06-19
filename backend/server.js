@@ -10,7 +10,11 @@ import { calculateATS } from "./resume-analyzer/atsScore.js";
 import { findMissingSkills } from "./resume-analyzer/skills.js";
 import { getSuggestions } from "./resume-analyzer/suggestions.js";
 
-const upload = multer({ storage: multer.memoryStorage() }).single("resume");
+const MAX_RESUME_FILE_SIZE_BYTES = 5 * 1024 * 1024;
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: MAX_RESUME_FILE_SIZE_BYTES, files: 1 },
+}).single("resume");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
