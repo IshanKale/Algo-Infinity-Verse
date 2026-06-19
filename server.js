@@ -526,7 +526,13 @@ async function handleApi(req, res, pathname) {
       });
     } catch (error) {
       console.error("Resume analysis error:", error);
-      return sendJson(res, 500, { error: error.message || "Failed to analyze resume." });
+      if (error instanceof multer.MulterError && error.code === "LIMIT_FILE_SIZE") {
+        return sendJson(res, 413, { error: "Resume file is too large." });
+      }
+      if (error?.message === "Unsupported file") {
+        return sendJson(res, 400, { error: "Unsupported file type. Upload PDF or DOCX." });
+      }
+      return sendJson(res, 500, { error: "Failed to analyze resume." });
     }
   }
 
