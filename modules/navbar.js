@@ -595,7 +595,7 @@ function initNavbarSearch() {
     }
 
     input.addEventListener("keydown", (e) => {
-      const items = dropdown.querySelectorAll(".suggestion-item, .recent-item, .recent-link");
+      const items = dropdown.querySelectorAll(".suggestion-item, .recent-link");
       if (!items.length) return;
 
       if (e.key === "ArrowDown") {
