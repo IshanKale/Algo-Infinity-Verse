@@ -70,8 +70,6 @@ import {
   getHistory,
 } from "./pages/Dsa-Battle/Battleservice.js";
 
-const upload = multer({ storage: multer.memoryStorage() }).single("resume");
-const uploadCsv = multer({ storage: multer.memoryStorage() }).single("csv");
 import { instrumentJS } from "./modules/code-tracer.js";
 
 const upload = multer({
@@ -2792,8 +2790,10 @@ function resolveStaticPath(pathname) {
 const routes = {
   "/": "index.html",
   "/login": "pages/auth/login.html",
+  "/login.html": "pages/auth/login.html",
   "/profile": "pages/profile/public-profile.html",
   "/signup": "pages/auth/signup.html",
+  "/signup.html": "pages/auth/signup.html",
   "/verify-email": "pages/auth/verify-email.html",
     "/community": "community.html",
     "/python-learning": "python-learning.html",
